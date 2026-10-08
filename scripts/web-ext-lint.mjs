@@ -24,6 +24,7 @@ manifest.browser_specific_settings = {
   }
 }
 writeFileSync(manifestPath, JSON.stringify(manifest))
+writeFileSync(resolve(lintDir, '.eslintrc.json'), JSON.stringify({ root: true, env: { browser: true, webextensions: true } }))
 
 const result = spawnSync(process.execPath, [resolve('node_modules/web-ext/bin/web-ext.js'), 'lint', '--source-dir', lintDir], {
   cwd: lintDir,
