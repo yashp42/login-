@@ -1,2 +1,8 @@
 node_modules
-addon
+.output
+coverage
+playwright-report
+test-results
+postcss.config.js
+tailwind.config.js
+prettier.config.js
