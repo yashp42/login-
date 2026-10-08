@@ -17,13 +17,13 @@ jobs:
         uses: actions/checkout@v2
       - name: Install
         run: |
-          npm install
+          npm ci
       - name: Build
         run: |
-          npm run build-prod
+          npm run build
       - name: Zip
         run: |
-          zip -r addon.zip addon
+          zip -r addon.zip .output/chrome-mv3
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')

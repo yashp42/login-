@@ -1,4 +1,4 @@
-import type AuthRequestCredentials from 'models/AuthRequestCredentials'
+import type AuthRequestCredentials from '../models/AuthRequestCredentials'
 
 class ERP {
   onGetSecurityQues: (question: string) => void
@@ -30,7 +30,7 @@ class ERP {
           if (ques instanceof Object) {
             for (const q in ques) {
               if (Object.keys(securityQuestions).includes(q)) {
-                securityQuestions[q] = ques[q]
+                securityQuestions[q] = ques[q] ?? ''
               }
             }
           }
@@ -61,16 +61,11 @@ class ERP {
           if (ques) {
             for (const q in ques) {
               if (Object.prototype.hasOwnProperty.call(ques, q)) {
-                securityQuestions[q] = ques[q]
+                securityQuestions[q] = ques[q] ?? ''
               }
             }
           }
 
-          console.info('user loaded:', {
-            username,
-            password,
-            securityQuestions
-          })
         }
       },
 
@@ -83,13 +78,11 @@ class ERP {
           let question
           try {
             question = await this.getSecurityQues(username)
-          } catch (error) {
-            console.error(error)
+          } catch {
             return false
           }
 
           if (question === 'FALSE') {
-            console.error(new Error('Invalid username'))
             return false
           }
 
@@ -118,7 +111,6 @@ class ERP {
 
           /* Check login status */
           const isLoggedIn = await this.isLoggedIn(requestedUrl)
-          console.log({ isLoggedIn })
           if (isLoggedIn) {
             return requestedUrl
           }
@@ -127,12 +119,10 @@ class ERP {
           let question
           try {
             question = await this.getSecurityQues(username)
-          } catch (error) {
-            console.error(error)
+          } catch {
             return false
           }
 
-          console.log('authSecurityQues:', question)
 
           /* Pick answer to the security question */
           const answer = securityQuestions[question] || ''
@@ -151,9 +141,7 @@ class ERP {
       }
     })
 
-    this.onGetSecurityQues = function (question: string) {
-      console.log({ question })
-    }
+    this.onGetSecurityQues = () => undefined
 
     this.logout = async function () {
       const url = 'https://erp.iitkgp.ac.in/IIT_ERP3/logout.htm'
@@ -200,7 +188,6 @@ class ERP {
       const url = 'https://erp.iitkgp.ac.in/SSOAdministration/auth.htm'
       const method = 'POST'
 
-      console.log('req_body:', body)
       const response = (await processRequest(new Request(url, { method, body }))) as Response
 
       if (response.redirected) {
@@ -224,15 +211,7 @@ class ERP {
     }
 
     const processRequest = async function (request: Request) {
-      let ts = Date.now()
-      const { url, method } = request
-      const { pathname, search } = new URL(url)
-
       const response = await nativeFetch(request)
-      ts -= Date.now()
-
-      console.log(`${method + response.status}: ${-ts}ms ${pathname + search}`)
-
       if (response.ok && response.status === 200) {
         return response
       }
