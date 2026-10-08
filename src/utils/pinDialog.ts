@@ -122,9 +122,9 @@ async function getPinFromDialog(): Promise<string> {
           const next = parent.querySelector(`input#${input.dataset.next}`)
           if (next) next.select()
           else if (parent.dataset.autosubmit) {
-            // print the pin
-            console.log(inputs[0].value + inputs[1].value + inputs[2].value + inputs[3].value)
-            pin = inputs[0].value + inputs[1].value + inputs[2].value + inputs[3].value
+            pin = Array.from(inputs)
+              .map((input) => input.value)
+              .join('')
             pinDialog.close()
           }
         }

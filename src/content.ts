@@ -1,9 +1,8 @@
-import Credential from 'models/Credential'
-import { decrypt } from 'services/crypto'
-import displayMessageOnErpLoginPage from 'utils/displayMessageOnErpLoginPage'
-import fetchFromErp from 'utils/fetchFromErp'
-import getPinFromDialog from 'utils/pinDialog'
-import validateCredentials, { FieldValidationStatus } from 'utils/validateCredentials'
+import type Credential from './models/Credential'
+import { decrypt } from './services/crypto'
+import displayMessageOnErpLoginPage from './utils/displayMessageOnErpLoginPage'
+import getPinFromDialog from './utils/pinDialog'
+import validateCredentials, { FieldValidationStatus } from './utils/validateCredentials'
 
 // Create an observer instance linked to the callback function
 
@@ -52,10 +51,11 @@ const login = async (res: { [key: string]: unknown }) => {
   const usernameInput = document.getElementById('user_id') as HTMLInputElement
 
   const observer = new MutationObserver(async (mutationList, observer) => {
-    let [mutation] = mutationList
-    let [node] = mutation.addedNodes
+    const mutation = mutationList[0]
+    const node = mutation?.addedNodes[0]
+    if (!node) return
 
-    question = node.nodeValue as string
+    question = node.nodeValue ?? node.textContent ?? ''
     observer.disconnect()
 
     switch (question) {
@@ -93,8 +93,8 @@ const login = async (res: { [key: string]: unknown }) => {
 
     displayMessageOnErpLoginPage('Prefilling credentials! please wait...')
 
-    let passwordInput = document.getElementById('password') as HTMLInputElement
-    let answerInput = document.getElementById('answer') as HTMLInputElement
+    const passwordInput = document.getElementById('password') as HTMLInputElement
+    const answerInput = document.getElementById('answer') as HTMLInputElement
 
     if (!passwordInput || !answerInput) {
       displayMessageOnErpLoginPage('Something went wrong! Please refresh page and retry', '#a4000f')

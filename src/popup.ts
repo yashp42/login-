@@ -1,8 +1,11 @@
-import Credential from 'models/Credential'
-import 'pages/Popup/style.css'
-import { encrypt } from 'services/crypto'
-import ERP from 'services/erp'
-import { default as logger } from 'utils/displayMessageOnPopup'
+import sprite from './assets/sprite.svg?raw'
+import type Credential from './models/Credential'
+import './popup.css'
+import { encrypt } from './services/crypto'
+import ERP from './services/erp'
+import { default as logger } from './utils/displayMessageOnPopup'
+
+document.body.insertAdjacentHTML('afterbegin', sprite)
 
 /* Initialize Theme */
 chrome.storage.local.get(['theme', 'bg', 'landingPage', 'useAltPINDialog'], (result) => {
@@ -109,8 +112,6 @@ window.addEventListener('DOMContentLoaded', () => {
     },
     (result) => {
       const authCredentials = result.authCredentials
-      console.log(authCredentials)
-
       const form = document.getElementById('form_add_user') as HTMLFormElement
       const formResetBtn = document.getElementById('reset_form') as HTMLInputElement
       const formSubmitBtn = document.getElementById('submit_form') as HTMLInputElement
@@ -181,9 +182,6 @@ window.addEventListener('DOMContentLoaded', () => {
       autoLoginToggleBtn.addEventListener('change', (e: Event) => {
         const target = e.target as HTMLInputElement
 
-        console.log(`curr ${target.id}:`, authCredentials[target.id])
-        console.log(`set ${target.id} to:`, target.checked)
-
         authCredentials[target.id] = target.checked
         chrome.storage.local.set({
           authCredentials: authCredentials as Credential
@@ -252,8 +250,7 @@ window.addEventListener('DOMContentLoaded', () => {
           'warning',
           true,
           () => {
-            console.log('yes')
-            document.forms[0].reset()
+            document.forms[0]?.reset()
             chrome.storage.local.remove(['authCredentials'], () => {
               location.reload()
             })
@@ -309,8 +306,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
         let idx = 0
         erpUser.onGetSecurityQues = (q: string) => {
-          questions[idx].removeAttribute('disabled')
-          questions[idx].placeholder = q
+          const question = questions[idx]
+          if (!question) return
+          question.removeAttribute('disabled')
+          question.placeholder = q
           idx++
         }
       })

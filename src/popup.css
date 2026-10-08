@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 .bg-theme {
-  background: rgb(181, 214, 243) url('../../assets/images/bg.jpg') fixed center;
+  background: rgb(181, 214, 243) url('/assets/images/bg.jpg') fixed center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 .bg-theme-dark {
-  background: rgb(10, 17, 23) url('../../assets/images/bg-dark.png') fixed center;
+  background: rgb(10, 17, 23) url('/assets/images/bg-dark.png') fixed center;
   background-size: cover;
   background-repeat: no-repeat;
 }

@@ -4,12 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ERP Auto Login - IITKGP</title>
+    <title>KGP ERP One-Click Login</title>
+    <script type="module" src="../popup.ts"></script>
   </head>
 
   <body class="mx-auto">
-    <!-- Inlined at build time: an external sprite.svg via <use href> wedges the popup's load event on its 2nd open (Chrome 152) -->
-    <%= require('assets/sprite.svg?raw').replace(/<\?xml[^>]*\?>\s*/, '') %>
     <div class="box-container">
       <div class="box1-content">
         <main class="panel-container">
@@ -198,7 +197,7 @@
               <p class="panel-group-label">Miscellaneous</p>
               <hr class="panel-group-divider" />
               <a
-                href="https://chrome.google.com/webstore/detail/erp-auto-login-iitkgp/hianmedhblomknonbbmalncjjffdligl"
+                href="https://github.com/yashp42/login"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="panel-group-item"
@@ -209,7 +208,7 @@
                   </svg>
                 </div>
                 <div class="panel-group-item-middle">
-                  <h2>Rate this addon</h2>
+                  <h2>Project home</h2>
                 </div>
                 <div class="panel-group-item-end">
                   <svg>
@@ -323,16 +322,16 @@
             </header>
 
             <div>
-              <p class="panel-group-label">Developer Contact</p>
+              <p class="panel-group-label">Project</p>
               <!-- <hr class="panel-group-divider" /> -->
-              <a href="https://t.me/siddsarkar" target="_blank" rel="noopener noreferrer" class="panel-group-item">
+              <a href="https://github.com/yashp42/login/issues" target="_blank" rel="noopener noreferrer" class="panel-group-item">
                 <div class="panel-group-item-start">
                   <svg>
                     <use href="#airplane"></use>
                   </svg>
                 </div>
                 <div class="panel-group-item-middle">
-                  <h2>Telegram</h2>
+                  <h2>Report an issue</h2>
                 </div>
                 <div class="panel-group-item-end">
                   <svg>
@@ -340,14 +339,14 @@
                   </svg>
                 </div>
               </a>
-              <a href="https://siddsarkar.github.io" target="_blank" rel="noopener noreferrer" class="panel-group-item">
+              <a href="https://github.com/yashp42/login" target="_blank" rel="noopener noreferrer" class="panel-group-item">
                 <div class="panel-group-item-start">
                   <svg>
                     <use href="#web"></use>
                   </svg>
                 </div>
                 <div class="panel-group-item-middle">
-                  <h2>Website</h2>
+                  <h2>Source code</h2>
                 </div>
                 <div class="panel-group-item-end">
                   <svg>
@@ -360,7 +359,7 @@
               <hr class="panel-group-divider" />
               <p class="panel-group-label">Sources</p>
               <a
-                href="https://github.com/siddsarkar/iitkgp-erp-auto-login-extension"
+                href="https://github.com/yashp42/login"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="panel-group-item"
@@ -379,32 +378,12 @@
                   </svg>
                 </div>
               </a>
-              <a
-                href="https://design.firefox.com/photon/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="panel-group-item"
-              >
-                <div class="panel-group-item-start">
-                  <svg>
-                    <use href="#firefox"></use>
-                  </svg>
-                </div>
-                <div class="panel-group-item-middle">
-                  <h2>Photon Design</h2>
-                </div>
-                <div class="panel-group-item-end">
-                  <svg>
-                    <use href="#external-link"></use>
-                  </svg>
-                </div>
-              </a>
             </div>
             <div>
               <hr class="panel-group-divider" />
               <p class="panel-group-label">Contribute</p>
               <a
-                href="https://github.com/siddsarkar/iitkgp-erp-auto-login-extension/issues/new"
+                href="https://github.com/yashp42/login/issues/new"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="panel-group-item"
@@ -423,32 +402,9 @@
                   </svg>
                 </div>
               </a>
-              <a
-                href="https://www.paypal.com/paypalme/siddsarkar"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="panel-group-item"
-              >
-                <div class="panel-group-item-start">
-                  <svg>
-                    <use href="#heart"></use>
-                  </svg>
-                </div>
-                <div class="panel-group-item-middle">
-                  <h2>Donate</h2>
-                </div>
-                <div class="panel-group-item-end">
-                  <svg>
-                    <use href="#external-link"></use>
-                  </svg>
-                </div>
-              </a>
             </div>
             <div class="panel-footer align-top">
-              designed & developed by
-              <a target="_blank" href="https://github.com/siddsarkar" rel="noopener noreferrer"> siddharth</a>
-              with
-              <span>❤</span>
+              KGP ERP One-Click Login
               <svg
                 style="height: 9; width: 9; display: inline-block"
                 class="fill-gray-900 align-super dark:fill-gray-300"
@@ -613,18 +569,18 @@
         <div class="relative flex w-full items-center justify-between gap-2 pl-2 pr-3">
           <div class="relative -ml-7 h-20 w-20 rounded-full bg-sky-500/40 p-4 dark:bg-slate-200">
             <div
-              class="absolute left-5 h-12 w-12 bg-[url('../../assets/images/iitkgp-logo.svg')] bg-contain bg-no-repeat"
+              class="absolute left-5 h-12 w-12 bg-[url('/icon/icon-placeholder.png')] bg-contain bg-no-repeat"
             ></div>
           </div>
           <!-- <img class="w-12" src="../../assets/images/iitkgp-logo.svg" alt="ext-logo" /> -->
           <div for="theme" class="ml-2 flex flex-col text-center">
-            <h2 class="font-medium">ERP Auto Login - IITKGP</h2>
-            <small class="text-gray-600 dark:text-gray-400">Copyright © 2022.</small>
+            <h2 class="font-medium">KGP ERP One-Click Login</h2>
+            <small class="text-gray-600 dark:text-gray-400">Chrome extension</small>
           </div>
 
           <a
             target="_blank"
-            href="https://github.com/siddsarkar/iitkgp-erp-auto-login-extension"
+            href="https://github.com/yashp42/login"
             class="relative -mr-7 flex h-20 w-20 cursor-pointer items-center justify-center rounded-full p-4 hover:bg-gray-400/30 dark:hover:bg-gray-400/40"
           >
             <svg class="h-5 w-5 fill-slate-600 dark:fill-slate-400">

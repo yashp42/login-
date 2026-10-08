@@ -1,3 +1,6 @@
 node_modules
-addon
+.output
+coverage
+playwright-report
+test-results
 *.zip
